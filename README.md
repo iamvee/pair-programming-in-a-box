@@ -1,39 +1,45 @@
 # Pair Programming in a Box
 
-## Using `pair` docker image 
+## استفاده از ایمیج داکر `pair`
 
-Start a server on your local machine, that allows you to share a development environment with another user.
+برای ایجاد یک محیط کدنویسی و به اشتراک گذاری آن با بقیه، یک سرور ران می‌کنیم. داکر فایلی که در این ریپوزیتوری می‌بینید،‌ایمیج سرور است. 
 
-### Building the server (on server)
+### ساخت ایمیج سرور
+
+```shell
+$ docker build -t pair
+```
+
+### راه‌اندازی و استارت سرور
+
+```shell
+$ docker run -p 8080:22 -dt pair
+```
+
+### برای اتصال کلاینت‌ها به سرور از طریق اس‌اس‌اچ
+
+```shell
+$ ssh -X -p 8080 root@<your-machine-ip>
+```
+
+پس از راه‌اندازی سرور و اتصال کلاینت‌ها، چه ابزار‌هایی خواهیم داشت؟
+
+| . | نام | توضیح | 
+| :--:  | --: | :-- | 
+| 1.  | emacs | a shared emacsclient session with all connected users | 
+| 2.  | terminal | a shared terminal session via tmux |
 
 
-     $ docker build -t pair
+## ابزار‌های تکمیلی (سرویس‌های آنلاین)
 
-### Starting the server (on server)
-
-
-     $ docker run -p 8080:22 -dt pair
-
-### Connecting to the server (everyone)
-
-
-     $ ssh -X -p 8080 root@<your-machine-ip>
-
-This will fireup the following
-* a shared emacsclient session with all connected users
-* a shared terminal session via tmux
-
-
-## alternative online tools:
-
-### pair coding websites
+### سایت‌های کدنویسی اشتراکی 
 
 * [codeshare.io](https://codeshare.io)
-* add more
+* موارد بیشتر
 
-### realtime boards
+### تخته سیاه اشتراکی 
 
 * [witeboard](https://witeboard.com/)
 * [realtimeboard](http://realtimeboard.com/)
-* [Google's Jamboard](https://jamboard.google.com/) : easy to access, limited features, easily links to other google tools, say, keep, docs, calendar, ... 
-*
+* [Google's Jamboard](https://jamboard.google.com/) : دسترسی به جم‌بورد گوگل راحته، با بقیه ابزار‌های گوگلی هم لینک می‌شه
+
